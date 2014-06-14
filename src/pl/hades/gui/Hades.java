@@ -8,7 +8,7 @@ package pl.hades.gui;
 
 /**
  *
- * @author miq
+ * @author Mikolaj Cybulski
  */
 public class Hades {
 

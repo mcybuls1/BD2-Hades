@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-12-07 23:03:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="pl.baza.Miejsce" table="Miejsce">
+        <id name="id" type="java.lang.Integer">
+            <column name="Miejsce_ID"/>
+        </id>
+        <property name="ulica" type="java.lang.String">
+            <column name="Ulica"/>
+        </property>
+        <property name="miasto" type="java.lang.String">
+            <column name="Miasto"/>
+        </property>
+        <property name="nrBudynku" type="java.lang.Integer">
+            <column name="Nr_budynku"/>
+        </property>
+        <property name="nrMieszkania" type="java.lang.Integer">
+            <column name="Nr_mieszkania"/>
+        </property>
+        <property name="pojemnosc" type="java.lang.Integer">
+            <column name="Pojemnosc"/>
+        </property>
+    </class>
+</hibernate-mapping>

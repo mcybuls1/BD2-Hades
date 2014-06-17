@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-12-07 23:03:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="pl.baza.Karawan" table="Karawan">
+        <id name="nrRejestracyjny" type="java.lang.String">
+            <column name="Rejestracja"/>
+        </id>
+        <property name="model" type="java.lang.String">
+            <column name="model"/>
+        </property>
+        <property name="marka" type="java.lang.String">
+            <column name="Marka"/>
+        </property>
+        <property name="rozmiarPaki" type="java.lang.String">
+            <column name="Rozmiar_paki"/>
+        </property>
+    </class>
+</hibernate-mapping>

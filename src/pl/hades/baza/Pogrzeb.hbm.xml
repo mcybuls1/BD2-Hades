@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="pl.hades.baza.Pogrzeb" table="Pogrzeb">
+        <id name="id" type="java.lang.Integer">
+            <column name="Pogrzeb_ID"/>
+        </id>
+        <property name="sposobPochowku" type="java.lang.String">
+            <column name="Pogrzeb_sposob_pochowku"/>
+        </property>
+        <property name="religa" type="java.lang.String">
+            <column name="Pogrzeb_religia"/>
+        </property>
+        <property name="data" type="java.lang.String">
+            <column name="Data"/>
+        </property>
+        <many-to-one name="miejsce" column="Miejsce_Miejsce_ID"/>
+        <many-to-one name="karawan" column="Karawan_Rejestracja"/>
+    </class>
+</hibernate-mapping>

@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 
-package pl.hades.gui;
+package pl.hades.baza;
 
 /**
  *
  * @author Mikolaj Cybulski
  */
 public class Zlecenie implements  java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     
     private Zleceniodawca zleceniodawca;
     private Zmarly zmarly;

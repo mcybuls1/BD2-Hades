@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 
-package pl.hades.gui;
+package pl.hades.baza;
 
 /**
  *
  * @author Mikolaj Cybulski
  */
 public class Firma implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     
     private String nazwa;
     private String nrKonta;

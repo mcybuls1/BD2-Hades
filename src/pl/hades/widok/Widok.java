@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pl.hades.baza.Firma;
+import pl.hades.baza.Karawan;
 import pl.hades.baza.Miejsce;
 import pl.hades.baza.Zlecenie;
 import pl.hades.klientsocket.KlientSocket;
@@ -44,6 +45,7 @@ public class Widok implements Odbieralny
      */
     public void wyswietl()
     {
+        view.setWidok(this);
         final Thread odbior = new Thread()
         {
             @Override
@@ -97,6 +99,26 @@ public class Widok implements Odbieralny
         {
             dzialania.get(typ).wykonaj(dane);
         }
+    }
+
+    void stworzKarawan(final Karawan karawan)
+    {
+        wyslijKomunikat(TypKomunikatu.KARAWAN, karawan);
+    }
+    
+    void stworzMiejsce(final Miejsce miejsce)
+    {
+        wyslijKomunikat(TypKomunikatu.MIEJSCE, miejsce);
+    }
+    
+    void stworzFirme(final Firma firma)
+    {
+        wyslijKomunikat(TypKomunikatu.FIRMA, firma);
+    }
+
+    void stworzZlecenie(final Zlecenie zlecenie)
+    {
+        wyslijKomunikat(TypKomunikatu.NOWE_ZLECENIE, zlecenie);
     }
     
     /**
@@ -188,6 +210,20 @@ public class Widok implements Odbieralny
                     @SuppressWarnings("unchecked")
                     final List<Firma> firmy = (List<Firma>) obiekt;
                     view.addFirmy(firmy);
+                }
+            }
+        });
+        dzialania.put(TypKomunikatu.MIEJSCE, new Dzialanie()
+        {
+
+            @Override
+            public void wykonaj(Serializable obiekt)
+            {
+                if (obiekt instanceof List) 
+                {
+                    @SuppressWarnings("unchecked")
+                    final List<Miejsce> miejsce = (List<Miejsce>) obiekt;
+                    view.addMiejsca(miejsce);
                 }
             }
         });

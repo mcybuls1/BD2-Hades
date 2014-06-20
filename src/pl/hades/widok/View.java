@@ -3,7 +3,12 @@ package pl.hades.widok;
 import java.util.Collection;
 import java.util.List;
 import pl.hades.baza.Firma;
+import pl.hades.baza.Karawan;
+import pl.hades.baza.Miejsce;
+import pl.hades.baza.Pogrzeb;
 import pl.hades.baza.Zlecenie;
+import pl.hades.baza.Zleceniodawca;
+import pl.hades.baza.Zmarly;
 
 /**
  *
@@ -19,6 +24,11 @@ class View extends javax.swing.JFrame
     View() 
     {
         initComponents();
+    }
+    
+    void setWidok(final Widok widok)
+    {
+        this.widok = widok;
     }
     
     void addZlecenie(final Collection<Zlecenie> zlecenia)
@@ -42,6 +52,12 @@ class View extends javax.swing.JFrame
     void addFirmy(final List<Firma> firmy)
     {
         firmaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(firmy.toArray(new Firma[1])));
+    }
+
+    void addMiejsca(final List<Miejsce> miejsce)
+    {
+        miejsceStypyCombo.setModel(new javax.swing.DefaultComboBoxModel<>(miejsce.toArray(new Miejsce[1])));
+        cmentarzCombo.setModel(new javax.swing.DefaultComboBoxModel<>(miejsce.toArray(new Miejsce[1])));
     }
 
     /**
@@ -85,8 +101,8 @@ class View extends javax.swing.JFrame
         wyznanieZmarField = new javax.swing.JTextField();
         sposobPochowkuField = new javax.swing.JTextField();
         firmaCombo = new javax.swing.JComboBox<>();
-        cmentarzCombo = new javax.swing.JComboBox();
-        miejsceStypyCombo = new javax.swing.JComboBox();
+        cmentarzCombo = new javax.swing.JComboBox<>();
+        miejsceStypyCombo = new javax.swing.JComboBox<>();
         dataStypogrzebuField = new javax.swing.JTextField();
         wprowadzZlecenieButton = new javax.swing.JButton();
         wprowadzDialog = new javax.swing.JDialog();
@@ -99,7 +115,7 @@ class View extends javax.swing.JFrame
         javax.swing.JLabel jLabel19 = new javax.swing.JLabel();
         nrrejestracyjnyKarawanTextField = new javax.swing.JTextField();
         javax.swing.JLabel jLabel20 = new javax.swing.JLabel();
-        romiarPakiKarawanTextField = new javax.swing.JTextField();
+        rozmiarPakiKarawanTextField = new javax.swing.JTextField();
         wprowadzKarawanButton = new javax.swing.JButton();
         miejscePanel = new javax.swing.JPanel();
         javax.swing.JLabel jLabel21 = new javax.swing.JLabel();
@@ -245,13 +261,26 @@ class View extends javax.swing.JFrame
 
         prawyNowePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        /*
         firmaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        */
 
+        /*
         cmentarzCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        */
 
+        /*
         miejsceStypyCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        */
 
         wprowadzZlecenieButton.setText("Wprowadź");
+        wprowadzZlecenieButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                wprowadzZlecenieButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout prawyNowePanelLayout = new javax.swing.GroupLayout(prawyNowePanel);
         prawyNowePanel.setLayout(prawyNowePanelLayout);
@@ -351,6 +380,13 @@ class View extends javax.swing.JFrame
         jLabel20.setText("Rozmiar paki:");
 
         wprowadzKarawanButton.setText("Wprowadź Dane");
+        wprowadzKarawanButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                wprowadzKarawanButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout karawanPanelLayout = new javax.swing.GroupLayout(karawanPanel);
         karawanPanel.setLayout(karawanPanelLayout);
@@ -362,7 +398,7 @@ class View extends javax.swing.JFrame
                     .addComponent(markaKarawanTextField)
                     .addComponent(modelKarawanTextField)
                     .addComponent(nrrejestracyjnyKarawanTextField)
-                    .addComponent(romiarPakiKarawanTextField)
+                    .addComponent(rozmiarPakiKarawanTextField)
                     .addGroup(karawanPanelLayout.createSequentialGroup()
                         .addGroup(karawanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
@@ -393,7 +429,7 @@ class View extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(romiarPakiKarawanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rozmiarPakiKarawanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(wprowadzKarawanButton)
                 .addContainerGap())
@@ -402,6 +438,14 @@ class View extends javax.swing.JFrame
         jTabbedPane2.addTab("Karawan", karawanPanel);
 
         jLabel21.setText("Ulica:");
+
+        ulicaMiejsceTextField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                ulicaMiejsceTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel22.setText("Miasto:");
 
@@ -653,49 +697,75 @@ class View extends javax.swing.JFrame
     }//GEN-LAST:event_wprowadzItemActionPerformed
 
     private void przegladajItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przegladajItemActionPerformed
-        przegladajDialog.setVisible(true);
-        
+        przegladajDialog.setVisible(true);        
     }//GEN-LAST:event_przegladajItemActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void wprowadzKarawanButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_wprowadzKarawanButtonActionPerformed
+    {//GEN-HEADEREND:event_wprowadzKarawanButtonActionPerformed
+        if (!modelKarawanTextField.getText().equals(""))
+        {
+            final Karawan karawan = new Karawan();
+            karawan.setModel(modelKarawanTextField.getText());
+            karawan.setMarka(markaKarawanTextField.getText());
+            karawan.setNrRejestracyjny(nrrejestracyjnyKarawanTextField.getText());
+            karawan.setRozmiarPaki(rozmiarPakiKarawanTextField.getText());
+            widok.stworzKarawan(karawan);
         }
-        //</editor-fold>
+        if (!ulicaMiejsceTextField.getText().equals(""))
+        {
+            final Miejsce miejsce = new Miejsce();
+            miejsce.setUlica(ulicaMiejsceTextField.getText());
+            miejsce.setMiasto(miastoMiejsceTextField.getText());
+            miejsce.setNrMieszkania(Integer.parseInt(nrMieszkaniaMiejsceTextField.getText()));
+            miejsce.setNrBudynku(Integer.parseInt(nrBudynkuMiejsceTextField.getText()));
+            widok.stworzMiejsce(miejsce);
+        }
+        if (!nazwaFirmaTextField.getText().equals(""))
+        {
+            final Firma firma = new Firma();
+            firma.setNazwa(nazwaFirmaTextField.getText());
+            firma.setNip(nipFirmaTextField.getText());
+            firma.setNrKonta(nrKontaFirmaTextField.getText());
+            firma.setRodzajUslugi(uslugaFirmaTextField.getText());
+            widok.stworzFirme(firma);
+        }
+        wprowadzDialog.setVisible(false);
+    }//GEN-LAST:event_wprowadzKarawanButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new View().setVisible(true);
-            }
-        });
-    }
+    private void wprowadzZlecenieButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_wprowadzZlecenieButtonActionPerformed
+    {//GEN-HEADEREND:event_wprowadzZlecenieButtonActionPerformed
+        final Zlecenie zlecenie = new Zlecenie();
+        final Pogrzeb pogrzeb = new Pogrzeb();
+        pogrzeb.setReligia(wyznanieZmarField.getText());
+        pogrzeb.setSposobPochowku(sposobPochowkuField.getText());
+        pogrzeb.setData(dataStypogrzebuField.getText());
+        pogrzeb.setMiejsce(cmentarzCombo.getItemAt(cmentarzCombo.getSelectedIndex()));
+        final Zmarly zmarly = new Zmarly();
+        zmarly.setImie(imieZmarField.getText());
+        zmarly.setNazwisko(nazwZmarField.getText());
+        zmarly.setDataUrodzenia(dataUrodzZmarField.getText());
+        zmarly.setDataZgonu(dataZgonuZmarField.getText());
+        zmarly.setPogrzeb(pogrzeb);
+        final Zleceniodawca zleceniodawca = new Zleceniodawca();
+        zleceniodawca.setImie(imieZlecField.getText());
+        zleceniodawca.setNazwisko(nazwZlecField.getText());
+        zleceniodawca.setWiezZeZmarlym(wiezField.getText());
+        zleceniodawca.setZmarly(zmarly);
+        zlecenie.setZleceniodawca(zleceniodawca);
+        widok.stworzZlecenie(zlecenie);
+        noweDialog.setVisible(false);
+    }//GEN-LAST:event_wprowadzZlecenieButtonActionPerformed
+
+    private void ulicaMiejsceTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ulicaMiejsceTextFieldActionPerformed
+    {//GEN-HEADEREND:event_ulicaMiejsceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ulicaMiejsceTextFieldActionPerformed
+    
     //user variables
-    private static String[] names = { "Zleceniodawca imię", "Zleceniodawca nazwisko", "Zmarły imię", "Zmarły nazwisko", "Data", "Pojazd" };
+    private Widok widok;
+    private static final String[] names = { "Zleceniodawca imię", "Zleceniodawca nazwisko", "Zmarły imię", "Zmarły nazwisko", "Data", "Pojazd" };
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cmentarzCombo;
+    private javax.swing.JComboBox<Miejsce> cmentarzCombo;
     private javax.swing.JTextField dataStypogrzebuField;
     private javax.swing.JTextField dataUrodzZmarField;
     private javax.swing.JTextField dataZgonuZmarField;
@@ -713,7 +783,7 @@ class View extends javax.swing.JFrame
     private javax.swing.JTextField markaKarawanTextField;
     private javax.swing.JTextField miastoMiejsceTextField;
     private javax.swing.JPanel miejscePanel;
-    private javax.swing.JComboBox miejsceStypyCombo;
+    private javax.swing.JComboBox<Miejsce> miejsceStypyCombo;
     private javax.swing.JTextField modelKarawanTextField;
     private javax.swing.JTextField nazwZlecField;
     private javax.swing.JTextField nazwZmarField;
@@ -728,7 +798,7 @@ class View extends javax.swing.JFrame
     private javax.swing.JPanel prawyNowePanel;
     private javax.swing.JDialog przegladajDialog;
     private javax.swing.JMenuItem przegladajItem;
-    private javax.swing.JTextField romiarPakiKarawanTextField;
+    private javax.swing.JTextField rozmiarPakiKarawanTextField;
     private javax.swing.JTextField sposobPochowkuField;
     private javax.swing.JTextField ulicaMiejsceTextField;
     private javax.swing.JTextField uslugaFirmaTextField;

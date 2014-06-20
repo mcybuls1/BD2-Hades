@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import pl.hades.baza.Firma;
+import pl.hades.baza.Karawan;
 import pl.hades.baza.Miejsce;
 import pl.hades.baza.Zlecenie;
 import pl.hades.model.Model;
@@ -79,6 +80,52 @@ public class Kontroler implements Odbieralny
                 serwer.wyslijWybranemu(klient, new Wiadomosc(TypKomunikatu.ZLECENIE, zlecenia));
                 final ArrayList<Firma> firmy = model.pobierzFirmy();
                 serwer.wyslijWybranemu(klient, new Wiadomosc(TypKomunikatu.FIRMA, firmy));
+                final ArrayList<Miejsce> miejsca = model.pobierzMiejsca();
+                serwer.wyslijWybranemu(klient, new Wiadomosc(TypKomunikatu.MIEJSCE, miejsca));
+            }
+        });
+        dzialania.put(TypKomunikatu.KARAWAN, new Dzialanie() {
+
+            @Override
+            public void wykonaj(Integer klient, Serializable zadanie)
+            {
+                if (zadanie instanceof Karawan) 
+                {
+                    model.dodajKarawan((Karawan) zadanie);
+                }
+            }
+        });
+        dzialania.put(TypKomunikatu.MIEJSCE, new Dzialanie() {
+
+            @Override
+            public void wykonaj(Integer klient, Serializable zadanie)
+            {
+                if (zadanie instanceof Miejsce) 
+                {
+                    model.dodajMiejsce((Miejsce) zadanie);
+                }
+            }
+        });
+        dzialania.put(TypKomunikatu.FIRMA, new Dzialanie() {
+
+            @Override
+            public void wykonaj(Integer klient, Serializable zadanie)
+            {
+                if (zadanie instanceof Firma) 
+                {
+                    model.dodajFirme((Firma) zadanie);
+                }
+            }
+        });
+        dzialania.put(TypKomunikatu.NOWE_ZLECENIE, new Dzialanie() {
+
+            @Override
+            public void wykonaj(Integer klient, Serializable zadanie)
+            {
+                if (zadanie instanceof Zlecenie)
+                {
+                    model.dodajZlecenie((Zlecenie) zadanie);
+                }
             }
         });
     }

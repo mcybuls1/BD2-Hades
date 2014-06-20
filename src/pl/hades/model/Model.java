@@ -52,7 +52,7 @@ public class Model
         this.kontroler = kontroler;
     }
     
-    void dodajKarawan(final Karawan karawan)
+    public void dodajKarawan(final Karawan karawan)
     {
         final Session session = sessionFactory.openSession();
         Transaction transaction = null;
@@ -76,7 +76,7 @@ public class Model
         }
     }
     
-    void dodajMiejsce(final Miejsce miejsce)
+    public void dodajMiejsce(final Miejsce miejsce)
     {
         final Session session = sessionFactory.openSession();
         Transaction transaction = null;
@@ -100,7 +100,7 @@ public class Model
         }
     }
     
-    void dodajFirme(final Firma firma)
+    public void dodajFirme(final Firma firma)
     {
         final Session session = sessionFactory.openSession();
         Transaction transaction = null;
@@ -188,5 +188,60 @@ public class Model
             session.close();
         }
         return firmy;
+    }
+
+    public ArrayList<Miejsce> pobierzMiejsca()
+    {
+        final Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        final ArrayList<Miejsce> miejsca = new ArrayList<>();
+        try
+        {
+            transaction = session.beginTransaction();
+            for (Object m : session.createQuery("FROM Miejsca").list())
+            {
+                final Miejsce miejsce = (Miejsce) m;
+                Hibernate.initialize(miejsce);
+                miejsca.add(miejsce);
+            }
+            transaction.commit();
+        }
+        catch (HibernateException e)
+        {
+            if (transaction != null)
+            {
+                transaction.rollback();
+                throw e;
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return miejsca;
+    }
+    
+    public void dodajZlecenie(final Zlecenie zlecenie)
+    {
+        final Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try
+        {
+            transaction = session.beginTransaction();
+            session.save(zlecenie.getZleceniodawca());
+            transaction.commit();
+        }
+        catch (HibernateException e)
+        {
+            if (transaction != null)
+            {
+                transaction.rollback();
+                throw e;
+            }
+        }
+        finally
+        {
+            session.close();
+        }
     }
 }

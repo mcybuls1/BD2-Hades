@@ -411,6 +411,8 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;()"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Firma&gt;"/>
               </AuxValues>
             </Component>
@@ -425,6 +427,12 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;()"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Miejsce&gt;"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JComboBox" name="miejsceStypyCombo">
               <Properties>
@@ -437,6 +445,12 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;()"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Miejsce&gt;"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="dataStypogrzebuField">
             </Component>
@@ -444,6 +458,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Wprowad&#x17a;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wprowadzZlecenieButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -500,7 +517,7 @@
                               <Component id="markaKarawanTextField" max="32767" attributes="0"/>
                               <Component id="modelKarawanTextField" alignment="0" max="32767" attributes="0"/>
                               <Component id="nrrejestracyjnyKarawanTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="romiarPakiKarawanTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="rozmiarPakiKarawanTextField" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -537,7 +554,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="romiarPakiKarawanTextField" min="-2" max="-2" attributes="0"/>
+                          <Component id="rozmiarPakiKarawanTextField" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="35" max="32767" attributes="0"/>
                           <Component id="wprowadzKarawanButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -588,12 +605,15 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="romiarPakiKarawanTextField">
+                <Component class="javax.swing.JTextField" name="rozmiarPakiKarawanTextField">
                 </Component>
                 <Component class="javax.swing.JButton" name="wprowadzKarawanButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Wprowad&#x17a; Dane"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="wprowadzKarawanButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -671,6 +691,9 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="ulicaMiejsceTextField">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ulicaMiejsceTextFieldActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel22">
                   <Properties>

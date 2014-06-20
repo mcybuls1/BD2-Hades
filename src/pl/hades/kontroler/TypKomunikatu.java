@@ -7,5 +7,8 @@ package pl.hades.kontroler;
  */
 public enum TypKomunikatu 
 {
-    
+    ZLECENIE,
+    FIRMA,
+    KARAWAN,
+    MIEJSCE
 }

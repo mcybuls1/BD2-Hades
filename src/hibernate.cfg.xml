@@ -8,10 +8,9 @@
     <property name="hibernate.connection.username">hades</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
     <property name="show_sql">true</property>
+    <mapping resource="pl/hades/baza/Miejsce.hbm.xml"/>
     <mapping resource="pl/hades/baza/Firma.hbm.xml"/>
     <mapping resource="pl/hades/baza/Karawan.hbm.xml"/>
-    <mapping resource="pl/hades/baza/Miejsce.hbm.xml"/>
-    <mapping resource="pl/hades/baza/Pogrzeb.hbm.xml"/>
     <mapping resource="pl/hades/baza/Zleceniodawca.hbm.xml"/>
     <mapping resource="pl/hades/baza/Zmarly.hbm.xml"/>
     <mapping resource="pl/hades/baza/Pogrzeb.hbm.xml"/>

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pl.hades.baza;
 
 /**
@@ -17,6 +11,17 @@ public class Firma implements java.io.Serializable {
     private String nrKonta;
     private String nip;
     private String rodzajUslugi;
+    private Miejsce miejsce;
+
+    public Miejsce getMiejsce()
+    {
+        return miejsce;
+    }
+
+    public void setMiejsce(Miejsce miejsce)
+    {
+        this.miejsce = miejsce;
+    }
 
     public String getNazwa() {
         return nazwa;
@@ -50,5 +55,9 @@ public class Firma implements java.io.Serializable {
         this.rodzajUslugi = rodzajUslugi;
     }
     
-    
+    @Override
+    public String toString()
+    {
+        return nazwa;
+    }
 }

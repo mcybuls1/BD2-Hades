@@ -14,18 +14,10 @@ public class Zlecenie implements  java.io.Serializable {
     private static final long serialVersionUID = 1L;
     
     private Zleceniodawca zleceniodawca;
-    private Zmarly zmarly;
     private Firma firma;
-    private Miejsce miejsceStypy;
-    private Miejsce cmentarz;
-    private String dataStypogrzebu;
-
-    public Miejsce getCmentarz() {
-        return cmentarz;
-    }
 
     public String getDataStypogrzebu() {
-        return dataStypogrzebu;
+        return zleceniodawca.getZmarly().getPogrzeb().getData();
     }
 
     public Firma getFirma() {
@@ -33,7 +25,7 @@ public class Zlecenie implements  java.io.Serializable {
     }
 
     public Miejsce getMiejsceStypy() {
-        return miejsceStypy;
+        return firma.getMiejsce();
     }
 
     public Zleceniodawca getZleceniodawca() {
@@ -41,32 +33,15 @@ public class Zlecenie implements  java.io.Serializable {
     }
 
     public Zmarly getZmarly() {
-        return zmarly;
-    }
-
-    public void setCmentarz(Miejsce cmentarz) {
-        this.cmentarz = cmentarz;
-    }
-
-    public void setDataStypogrzebu(String dataStypogrzebu) {
-        this.dataStypogrzebu = dataStypogrzebu;
+        return zleceniodawca.getZmarly();
     }
 
     public void setFirma(Firma firma) {
         this.firma = firma;
     }
 
-    public void setMiejsceStypy(Miejsce miejsceStypy) {
-        this.miejsceStypy = miejsceStypy;
-    }
-
     public void setZleceniodawca(Zleceniodawca zleceniodawca) {
         this.zleceniodawca = zleceniodawca;
     }
-
-    public void setZmarly(Zmarly zmarly) {
-        this.zmarly = zmarly;
-    }
-    
     
 }

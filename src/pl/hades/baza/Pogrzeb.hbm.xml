@@ -4,12 +4,13 @@
     <class name="pl.hades.baza.Pogrzeb" table="Pogrzeb">
         <id name="id" type="java.lang.Integer">
             <column name="Pogrzeb_ID"/>
+            <generator class="native"/>
         </id>
         <property name="sposobPochowku" type="java.lang.String">
-            <column name="Pogrzeb_sposob_pochowku"/>
+            <column name="Pogrzeb_Sposob_pochowku"/>
         </property>
-        <property name="religa" type="java.lang.String">
-            <column name="Pogrzeb_religia"/>
+        <property name="religia" type="java.lang.String">
+            <column name="Pogrzeb_Religia"/>
         </property>
         <property name="data" type="java.lang.String">
             <column name="Data"/>

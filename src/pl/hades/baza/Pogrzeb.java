@@ -26,16 +26,6 @@ public class Pogrzeb implements Serializable
         this.id = id;
     }
 
-    public String getSposobPochowku()
-    {
-        return sposobPochowku;
-    }
-
-    public void setSposobPochowku(String sposobPochowku)
-    {
-        this.sposobPochowku = sposobPochowku;
-    }
-
     public String getReligia()
     {
         return religia;
@@ -44,6 +34,16 @@ public class Pogrzeb implements Serializable
     public void setReligia(String religia)
     {
         this.religia = religia;
+    }
+
+    public String getSposobPochowku()
+    {
+        return sposobPochowku;
+    }
+
+    public void setSposobPochowku(String sposobPochowku)
+    {
+        this.sposobPochowku = sposobPochowku;
     }
 
     public String getData()

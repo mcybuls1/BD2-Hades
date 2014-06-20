@@ -5,6 +5,7 @@
     <class name="pl.hades.baza.Zleceniodawca" table="Zleceniodawca">
         <id name="id" type="java.lang.Integer">
             <column name="Zleceniodawca_ID"/>
+            <generator class="native"/>
         </id>
         <property name="imie" type="java.lang.String">
             <column name="Imie"/>

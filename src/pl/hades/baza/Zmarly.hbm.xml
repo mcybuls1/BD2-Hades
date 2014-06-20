@@ -4,6 +4,7 @@
     <class name="pl.hades.baza.Zmarly" table="Zmarly">
         <id name="id" type="java.lang.Integer">
             <column name="Zmarly_ID"/>
+            <generator class="native"/>
         </id>
         <property name="imie" type="java.lang.String">
             <column name="Imie"/>

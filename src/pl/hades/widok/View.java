@@ -1,26 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pl.hades.widok;
 
+import java.util.Collection;
+import java.util.List;
+import pl.hades.baza.Firma;
 import pl.hades.baza.Zlecenie;
-import java.util.ArrayList;
 
 /**
  *
  * @author Mikolaj Cybulski
  */
-public class View extends javax.swing.JFrame {
+class View extends javax.swing.JFrame 
+{
+    private static final long serialVersionUID = 1L;
 
     /**
      * Creates new form View
      */
-    public View() {
+    View() 
+    {
         initComponents();
-        zlecenia = new ArrayList<>();
+    }
+    
+    void addZlecenie(final Collection<Zlecenie> zlecenia)
+    {
+        String[][] string = new String[zlecenia.size()][names.length];
+        int i = 0;
+        for (Zlecenie zlecenie : zlecenia) 
+        {
+            string[i][0] = zlecenie.getZleceniodawca().getImie();
+            string[i][1] = zlecenie.getZleceniodawca().getNazwisko();
+            string[i][2] = zlecenie.getZmarly().getImie();
+            string[i][3] = zlecenie.getZmarly().getNazwisko();
+            string[i][4] = zlecenie.getZmarly().getDataZgonu();
+            string[i][5] = zlecenie.getZmarly().getPogrzeb().getKarawan().getNrRejestracyjny();
+            ++i;
+        }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(string, names));
+        jScrollPane1.setViewportView(jTable1);
+    }
+
+    void addFirmy(final List<Firma> firmy)
+    {
+        firmaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(firmy.toArray(new Firma[1])));
     }
 
     /**
@@ -34,36 +55,36 @@ public class View extends javax.swing.JFrame {
 
         noweDialog = new javax.swing.JDialog();
         lewyNowePanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        javax.swing.JSeparator jSeparator2 = new javax.swing.JSeparator();
+        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
+        javax.swing.JSeparator jSeparator3 = new javax.swing.JSeparator();
+        javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel12 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel13 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
         prawyNowePanel = new javax.swing.JPanel();
         imieZlecField = new javax.swing.JTextField();
         nazwZlecField = new javax.swing.JTextField();
         wiezField = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
         imieZmarField = new javax.swing.JTextField();
         nazwZmarField = new javax.swing.JTextField();
         dataUrodzZmarField = new javax.swing.JTextField();
         dataZgonuZmarField = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
+        javax.swing.JSeparator jSeparator4 = new javax.swing.JSeparator();
         wyznanieZmarField = new javax.swing.JTextField();
         sposobPochowkuField = new javax.swing.JTextField();
-        firmaCombo = new javax.swing.JComboBox();
+        firmaCombo = new javax.swing.JComboBox<>();
         cmentarzCombo = new javax.swing.JComboBox();
         miejsceStypyCombo = new javax.swing.JComboBox();
         dataStypogrzebuField = new javax.swing.JTextField();
@@ -71,39 +92,39 @@ public class View extends javax.swing.JFrame {
         wprowadzDialog = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         karawanPanel = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel17 = new javax.swing.JLabel();
         markaKarawanTextField = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel18 = new javax.swing.JLabel();
         modelKarawanTextField = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel19 = new javax.swing.JLabel();
         nrrejestracyjnyKarawanTextField = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel20 = new javax.swing.JLabel();
         romiarPakiKarawanTextField = new javax.swing.JTextField();
         wprowadzKarawanButton = new javax.swing.JButton();
         miejscePanel = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel21 = new javax.swing.JLabel();
         ulicaMiejsceTextField = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel22 = new javax.swing.JLabel();
         miastoMiejsceTextField = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel23 = new javax.swing.JLabel();
         nrBudynkuMiejsceTextField = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel24 = new javax.swing.JLabel();
         nrMieszkaniaMiejsceTextField = new javax.swing.JTextField();
         wprowadzMiejsceButton = new javax.swing.JButton();
         firmaPanel = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel25 = new javax.swing.JLabel();
         nazwaFirmaTextField = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel26 = new javax.swing.JLabel();
         nrKontaFirmaTextField = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel27 = new javax.swing.JLabel();
         nipFirmaTextField = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel28 = new javax.swing.JLabel();
         uslugaFirmaTextField = new javax.swing.JTextField();
         wprowadzFirmeButton = new javax.swing.JButton();
         przegladajDialog = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel29 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel29 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         zleceniaMenu = new javax.swing.JMenu();
         noweItem = new javax.swing.JMenuItem();
@@ -531,23 +552,36 @@ public class View extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "Title 441", "Title 252", "Title42 3", "Title 4"
+            }
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout przegladajDialogLayout = new javax.swing.GroupLayout(przegladajDialog.getContentPane());
         przegladajDialog.getContentPane().setLayout(przegladajDialogLayout);
         przegladajDialogLayout.setHorizontalGroup(
             przegladajDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(przegladajDialogLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, przegladajDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+                .addContainerGap())
         );
         przegladajDialogLayout.setVerticalGroup(
             przegladajDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(przegladajDialogLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, przegladajDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -610,18 +644,17 @@ public class View extends javax.swing.JFrame {
     }//GEN-END:initComponents
 
     private void noweItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noweItemActionPerformed
-        // TODO add your handling code here:
         noweDialog.setVisible(true);
+        
     }//GEN-LAST:event_noweItemActionPerformed
 
     private void wprowadzItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wprowadzItemActionPerformed
-        // TODO add your handling code here:
         wprowadzDialog.setVisible(true);
     }//GEN-LAST:event_wprowadzItemActionPerformed
 
     private void przegladajItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przegladajItemActionPerformed
-        // TODO add your handling code here:
         przegladajDialog.setVisible(true);
+        
     }//GEN-LAST:event_przegladajItemActionPerformed
 
     /**
@@ -653,57 +686,26 @@ public class View extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new View().setVisible(true);
             }
         });
     }
-//user variables
-    private ArrayList<Zlecenie> zlecenia;
+    //user variables
+    private static String[] names = { "Zleceniodawca imię", "Zleceniodawca nazwisko", "Zmarły imię", "Zmarły nazwisko", "Data", "Pojazd" };
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cmentarzCombo;
     private javax.swing.JTextField dataStypogrzebuField;
     private javax.swing.JTextField dataUrodzZmarField;
     private javax.swing.JTextField dataZgonuZmarField;
-    private javax.swing.JComboBox firmaCombo;
+    private javax.swing.JComboBox<Firma> firmaCombo;
     private javax.swing.JPanel firmaPanel;
     private javax.swing.JTextField imieZlecField;
     private javax.swing.JTextField imieZmarField;
     private javax.swing.JMenu inneMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel karawanPanel;

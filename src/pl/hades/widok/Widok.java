@@ -2,8 +2,14 @@ package pl.hades.widok;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import pl.hades.baza.Firma;
+import pl.hades.baza.Miejsce;
+import pl.hades.baza.Zlecenie;
 import pl.hades.klientsocket.KlientSocket;
 import pl.hades.klientsocket.Odbieralny;
 import pl.hades.kontroler.TypKomunikatu;
@@ -30,6 +36,7 @@ public class Widok implements Odbieralny
     public Widok(final KlientSocket klient)
     {
         this.klient = klient;
+        inicjalizujDzialania();
     }
 
     /**
@@ -66,6 +73,14 @@ public class Widok implements Odbieralny
                 view.setVisible(true);
             }
         });
+        try
+        {
+            klient.wyslij(new Wiadomosc(TypKomunikatu.ZLECENIE, new Integer(5)));
+        }
+        catch (BladPolaczeniaException ex)
+        {
+            Logger.getLogger(Widok.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -148,7 +163,34 @@ public class Widok implements Odbieralny
      */
     private void inicjalizujDzialania()
     {
-        
+        dzialania.put(TypKomunikatu.ZLECENIE, new Dzialanie()
+        {
+
+            @Override
+            public void wykonaj(Serializable obiekt)
+            {
+                if (obiekt instanceof List) 
+                {
+                    @SuppressWarnings("unchecked")
+                    final List<Zlecenie> zlecenie = (List<Zlecenie>) obiekt;
+                    view.addZlecenie(zlecenie);
+                }
+            }
+        });
+        dzialania.put(TypKomunikatu.FIRMA, new Dzialanie()
+        {
+
+            @Override
+            public void wykonaj(Serializable obiekt)
+            {
+                if (obiekt instanceof List) 
+                {
+                    @SuppressWarnings("unchecked")
+                    final List<Firma> firmy = (List<Firma>) obiekt;
+                    view.addFirmy(firmy);
+                }
+            }
+        });
     }
     
     /**

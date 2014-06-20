@@ -1,8 +1,14 @@
 package pl.hades.kontroler;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import pl.hades.baza.Firma;
+import pl.hades.baza.Miejsce;
+import pl.hades.baza.Zlecenie;
 import pl.hades.model.Model;
 import pl.hades.serwersocket.Odbieralny;
 import pl.hades.serwersocket.SerwerSocket;
@@ -63,6 +69,18 @@ public class Kontroler implements Odbieralny
      */
     private void inicjalizujDzialania()
     {
+        dzialania.put(TypKomunikatu.ZLECENIE, new Dzialanie() 
+        {
+
+            @Override
+            public void wykonaj(Integer klient, Serializable zadanie)
+            {
+                final ArrayList<Zlecenie> zlecenia = model.pobierzZlecenia();
+                serwer.wyslijWybranemu(klient, new Wiadomosc(TypKomunikatu.ZLECENIE, zlecenia));
+                final ArrayList<Firma> firmy = model.pobierzFirmy();
+                serwer.wyslijWybranemu(klient, new Wiadomosc(TypKomunikatu.FIRMA, firmy));
+            }
+        });
     }
 
     /**
